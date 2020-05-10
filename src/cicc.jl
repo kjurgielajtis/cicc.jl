@@ -1,32 +1,33 @@
 module cicc
 
 "Returns root of given function using secant method"
-function my_secant(f, x1, x2, eps)
-    xm = 0
-    x0 = 0
-    c = 0
-
-    if(f(x1) * f(x2) < 0)
-        while true
-            x0 = (x1 * f(x2) - x2 * f(x1)) / (f(x2) - f(x1))
-            c = f(x1) * f(x0)
-
-            x1 = x2
-            x2 = x0
-
-            if(c == 0)
-                break
-            end
-
-            xm = (x1 * f(x2) - x2 * f(x1)) / (f(x2) - f(x1))
-
-            if(abs(xm - x0) < eps)
-                break
-            end
-        end
-        return x0
-    else println("Can not find a root")
+function my_secant(f, a, b, n)
+    if f(a)*f(b) >= 0
+        println("secant failed")
+        return
     end
+    
+    a_temp = a
+    b_temp = b
+    for i = 1:n+1
+        g = a_temp - f(a_temp)*(b_temp - a_temp)/(f(b_temp) -f(a_temp))
+        f_g_temp = f(g)
+
+        if f(a_temp)*f_g_temp < 0
+            a_temp = a_temp
+            b_temp = g
+        elseif f(b_temp)*f_g_temp < 0
+            a_temp = g
+            b_temp = b_temp
+        elseif f_g_temp == 0
+            println("found solution")
+            return g
+        else
+            println("secant fails")
+            return
+        end
+    end
+    return a_temp - f(a_temp)*(b_temp - a_temp)/(f(b_temp) - f(a_temp))
 end
 
 export my_secant
