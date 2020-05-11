@@ -18,11 +18,11 @@ function my_secant(f, x1, x2, eps)
                 break
             end
 
-            xm = (x1 * f(x2) - x2 * f(x1)) / (f(x2) - f(x1))
+            #xm = (x1 * f(x2) - x2 * f(x1)) / (f(x2) - f(x1))
 
-            if(abs(xm - x0) < eps)
-                break
-            end
+            #if(abs(xm - x0) < eps)
+            #    break
+            #end
         end
         return x0
     else println("Can not find a root")
