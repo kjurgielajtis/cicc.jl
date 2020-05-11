@@ -10,4 +10,7 @@ using Test
 
     x, f = 1, x -> x + 10
     @test my_secant(f, -2, 2, 0.001) == nothing
+
+    x, f = 1, x -> x + 10
+    @test my_secant(f, -3, 7, 0.001) == nothing
 end
