@@ -31,4 +31,4 @@ end
 
 export my_secant
 
-end # module
+end
